@@ -1,0 +1,11 @@
+{
+  "version": "0.1.0",
+  "organization": "ClickHouse Inc",
+  "date": "February 2026",
+  "clickhouseVersion": "24.1+",
+  "abstract": "Guide-based skill for working with ClickHouse Cloud using the chv CLI. Covers local development workflows, Cloud service creation and lifecycle management, sizing and scaling configuration, migrating from local to cloud, security settings, and backup management. Each guide provides step-by-step instructions with bash examples.",
+  "references": [
+    "https://clickhouse.com/docs",
+    "https://clickhouse.com/docs/en/cloud/manage/api"
+  ]
+}

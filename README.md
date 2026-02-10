@@ -46,6 +46,26 @@ Skills follow the open specification at [agentskills.io](https://agentskills.io)
 
 **For agents:** The skill activates automatically when you work with ClickHouse—creating tables, writing queries, or designing data pipelines.
 
+### ClickHouse Cloud
+
+**17 guides** covering local development with chv, Cloud service management, sizing, migration, security, and backups.
+
+| Section | Guides | Coverage |
+|---------|--------|----------|
+| Setup | 2 | Install chv CLI, configure Cloud API credentials |
+| Local Development | 3 | Init projects, run server, run queries |
+| Service Management | 3 | Create, manage lifecycle, inspect services |
+| Sizing & Scaling | 3 | Replicas, idle scaling, provider/region |
+| Local to Cloud | 1 | Migrate local dev to cloud |
+| Security | 2 | IP allowlists, encryption |
+| Backups | 2 | List backups, restore from backup |
+
+**Location:** [`skills/clickhouse-cloud/`](./skills/clickhouse-cloud/)
+
+**For humans:** Read [SKILL.md](./skills/clickhouse-cloud/SKILL.md) for an overview, or [AGENTS.md](./skills/clickhouse-cloud/AGENTS.md) for the complete guide.
+
+**For agents:** The skill activates automatically when you work with chv, ClickHouse Cloud services, or local ClickHouse development.
+
 ## Quick Start
 
 After installation, your AI agent will reference these best practices when:

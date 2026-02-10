@@ -11,15 +11,24 @@ A collection of skills for AI agents working with ClickHouse databases. Skills a
 ```
 agent-skills/
 ├── skills/
-│   └── clickhouse-best-practices/   # ClickHouse optimization guidelines
+│   ├── clickhouse-best-practices/   # ClickHouse optimization guidelines
+│   │   ├── SKILL.md                 # Skill definition (overview)
+│   │   ├── AGENTS.md                # Full compiled guide (generated)
+│   │   ├── metadata.json            # Version, organization, abstract
+│   │   ├── README.md                # Maintainer guide
+│   │   └── rules/                   # Individual rule files
+│   │       ├── _sections.md         # Section metadata
+│   │       ├── _template.md         # Template for new rules
+│   │       └── *.md                 # Rule files (e.g., query-use-prewhere.md)
+│   └── clickhouse-cloud/            # ClickHouse Cloud & chv CLI guides
 │       ├── SKILL.md                 # Skill definition (overview)
-│       ├── AGENTS.md                # Full compiled guide (generated)
+│       ├── AGENTS.md                # Full compiled guide (hand-written)
 │       ├── metadata.json            # Version, organization, abstract
 │       ├── README.md                # Maintainer guide
-│       └── rules/                   # Individual rule files
+│       └── guides/                  # Individual guide files
 │           ├── _sections.md         # Section metadata
-│           ├── _template.md         # Template for new rules
-│           └── *.md                 # Rule files (e.g., query-use-prewhere.md)
+│           ├── _template.md         # Template for new guides
+│           └── *.md                 # Guide files (e.g., service-create.md)
 ├── packages/
 │   └── clickhouse-best-practices-build/  # Build tooling
 │       ├── package.json             # Bun scripts
