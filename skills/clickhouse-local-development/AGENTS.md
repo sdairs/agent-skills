@@ -225,11 +225,10 @@ Deploy your local ClickHouse schema and data to a ClickHouse Cloud service. Sinc
 
 **Steps:**
 
-1. **Set up Cloud API credentials** (see `setup-auth` in `clickhouse-cloud` skill)
+1. **Set up Cloud API credentials** — ask the user to run `chv cloud auth` in a separate terminal (interactive). See `setup-auth` in `clickhouse-cloud` skill.
 
 ```bash
-chv cloud config set-key <key-id> <key-secret>
-chv cloud config set-org <org-id>
+chv cloud auth
 ```
 
 2. **Create a Cloud service** (see `service-create` in `clickhouse-cloud` skill)

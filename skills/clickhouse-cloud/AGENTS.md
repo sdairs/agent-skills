@@ -41,22 +41,15 @@ Set up authentication for ClickHouse Cloud API commands. Required before using a
 
 1. **Create an API key** in the ClickHouse Cloud console under your organization settings.
 
-2. **Set credentials as environment variables**
+2. **Ask the user to run `chv cloud auth` in a separate terminal** (interactive — the agent cannot run this directly).
 
 ```bash
-export CLICKHOUSE_CLOUD_API_KEY=your-key
-export CLICKHOUSE_CLOUD_API_SECRET=your-secret
+chv cloud auth
 ```
 
-3. **Persist credentials in your shell profile**
+This stores credentials in a file at `.clickhouse/`. Once done, all `chv cloud` commands authenticate automatically.
 
-```bash
-echo 'export CLICKHOUSE_CLOUD_API_KEY=your-key' >> ~/.zshrc
-echo 'export CLICKHOUSE_CLOUD_API_SECRET=your-secret' >> ~/.zshrc
-source ~/.zshrc
-```
-
-4. **Verify access**
+3. **Verify access**
 
 ```bash
 chv cloud org list
