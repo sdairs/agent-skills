@@ -20,7 +20,16 @@ agent-skills/
 │   │       ├── _sections.md         # Section metadata
 │   │       ├── _template.md         # Template for new rules
 │   │       └── *.md                 # Rule files (e.g., query-use-prewhere.md)
-│   └── clickhouse-cloud/            # ClickHouse Cloud & chv CLI guides
+│   ├── clickhouse-cloud/            # ClickHouse Cloud service management guides
+│   │   ├── SKILL.md                 # Skill definition (overview)
+│   │   ├── AGENTS.md                # Full compiled guide (hand-written)
+│   │   ├── metadata.json            # Version, organization, abstract
+│   │   ├── README.md                # Maintainer guide
+│   │   └── guides/                  # Individual guide files
+│   │       ├── _sections.md         # Section metadata
+│   │       ├── _template.md         # Template for new guides
+│   │       └── *.md                 # Guide files (e.g., service-create.md)
+│   └── clickhouse-local-development/ # Local ClickHouse development guides
 │       ├── SKILL.md                 # Skill definition (overview)
 │       ├── AGENTS.md                # Full compiled guide (hand-written)
 │       ├── metadata.json            # Version, organization, abstract
@@ -28,7 +37,7 @@ agent-skills/
 │       └── guides/                  # Individual guide files
 │           ├── _sections.md         # Section metadata
 │           ├── _template.md         # Template for new guides
-│           └── *.md                 # Guide files (e.g., service-create.md)
+│           └── *.md                 # Guide files (e.g., local-run-server.md)
 ├── packages/
 │   └── clickhouse-best-practices-build/  # Build tooling
 │       ├── package.json             # Bun scripts

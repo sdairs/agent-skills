@@ -1,6 +1,6 @@
 ---
 title: Install the chv CLI
-tags: [cloud, setup, install]
+tags: [local, setup, install]
 ---
 
 ## Install the chv CLI
@@ -61,7 +61,7 @@ chv which
 | `chv install 25.12` | Install latest 25.12.x.x |
 | `chv install 25.12.5.44` | Install exact version |
 | `chv list` | List installed versions |
-| `chv list --available` | List versions available for download |
+| `chv list --remote` | List versions available for download |
 | `chv use <version>` | Set default version (installs if needed) |
 | `chv which` | Show current default version |
 | `chv remove <version>` | Remove an installed version |

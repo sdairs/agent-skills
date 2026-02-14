@@ -7,7 +7,7 @@ You can use these skills with open-source ClickHouse and managed ClickHouse Clou
 ## Installation
 
 ```bash
-npx skills add clickhouse/agent-skills
+npx skills add sdairs/agent-skills
 ```
 
 The CLI auto-detects installed agents and prompts you to select where to install.
@@ -48,15 +48,13 @@ Skills follow the open specification at [agentskills.io](https://agentskills.io)
 
 ### ClickHouse Cloud
 
-**17 guides** covering local development with chv, Cloud service management, sizing, migration, security, and backups.
+**11 guides** covering Cloud service management, sizing, security, and backups.
 
 | Section | Guides | Coverage |
 |---------|--------|----------|
-| Setup | 2 | Install chv CLI, configure Cloud API credentials |
-| Local Development | 3 | Init projects, run server, run queries |
+| Setup | 1 | Configure Cloud API credentials |
 | Service Management | 3 | Create, manage lifecycle, inspect services |
 | Sizing & Scaling | 3 | Replicas, idle scaling, provider/region |
-| Local to Cloud | 1 | Migrate local dev to cloud |
 | Security | 2 | IP allowlists, encryption |
 | Backups | 2 | List backups, restore from backup |
 
@@ -64,7 +62,23 @@ Skills follow the open specification at [agentskills.io](https://agentskills.io)
 
 **For humans:** Read [SKILL.md](./skills/clickhouse-cloud/SKILL.md) for an overview, or [AGENTS.md](./skills/clickhouse-cloud/AGENTS.md) for the complete guide.
 
-**For agents:** The skill activates automatically when you work with chv, ClickHouse Cloud services, or local ClickHouse development.
+**For agents:** The skill activates automatically when you work with ClickHouse Cloud services, API credentials, sizing, security, or backups.
+
+### ClickHouse Local Development
+
+**5 guides** covering local ClickHouse development with chv and migration to cloud.
+
+| Section | Guides | Coverage |
+|---------|--------|----------|
+| Setup | 1 | Install chv CLI and manage ClickHouse versions |
+| Local Development | 3 | Init projects, run server, run client |
+| Migration | 1 | Migrate local dev to cloud |
+
+**Location:** [`skills/clickhouse-local-development/`](./skills/clickhouse-local-development/)
+
+**For humans:** Read [SKILL.md](./skills/clickhouse-local-development/SKILL.md) for an overview, or [AGENTS.md](./skills/clickhouse-local-development/AGENTS.md) for the complete guide.
+
+**For agents:** The skill activates automatically when you install chv, run ClickHouse locally, or migrate from local to cloud.
 
 ## Quick Start
 

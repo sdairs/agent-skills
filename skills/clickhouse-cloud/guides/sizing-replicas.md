@@ -9,7 +9,7 @@ Set the number of replicas and memory allocation per replica when creating a Cli
 
 ### Prerequisites
 
-- chv CLI installed (see `setup-install`)
+- chv CLI installed (see the `clickhouse-local-development` skill)
 - Cloud API credentials configured (see `setup-auth`)
 
 ### Steps

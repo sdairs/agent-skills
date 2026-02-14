@@ -1,6 +1,6 @@
-# ClickHouse Cloud
+# ClickHouse Local Development
 
-Agent skill providing step-by-step guides for managing ClickHouse Cloud services using the chv CLI.
+Agent skill providing step-by-step guides for local ClickHouse development using the chv CLI.
 
 ## Installation
 
@@ -10,25 +10,21 @@ npx skills add clickhouse/agent-skills
 
 ## What's Included
 
-**11 guides** organized by section:
+**5 guides** organized by section:
 
 | Prefix | Count | Coverage |
 |--------|-------|----------|
-| `setup-*` | 1 | Configure Cloud API credentials |
-| `service-*` | 3 | Create, manage lifecycle, inspect services |
-| `sizing-*` | 3 | Replicas, idle scaling, provider/region |
-| `security-*` | 2 | IP allowlists, encryption |
-| `backup-*` | 2 | List backups, restore from backup |
+| `setup-*` | 1 | Install chv CLI and manage ClickHouse versions |
+| `local-*` | 3 | Init projects, run server, run client |
+| `migrate-*` | 1 | Migrate local dev to cloud |
 
 ## Trigger Phrases
 
 This skill activates when you:
-- "Create a ClickHouse Cloud service"
-- "Configure Cloud API credentials"
-- "How do I size my ClickHouse service?"
-- "Configure IP allowlist"
-- "Restore from backup"
-- "Start/stop a Cloud service"
+- "Install chv" or "set up chv"
+- "Run ClickHouse locally"
+- "Initialize a ClickHouse project"
+- "Migrate to ClickHouse Cloud"
 
 ## Files
 
@@ -45,7 +41,7 @@ Each guide uses YAML frontmatter with a step-by-step format:
 ```markdown
 ---
 title: Guide Title
-tags: [cloud, category]
+tags: [local, category]
 ---
 
 ## Guide Title
@@ -62,10 +58,10 @@ Unlike the best-practices skill which uses incorrect/correct rule pairs, this sk
 
 ## Related Skills
 
-- **[clickhouse-local-development](../clickhouse-local-development/)** — Local ClickHouse development: installing chv, running locally, migrating to cloud
+- **[clickhouse-cloud](../clickhouse-cloud/)** — ClickHouse Cloud service management: API credentials, service creation, sizing, security, and backups
 - **[clickhouse-best-practices](../clickhouse-best-practices/)** — ClickHouse schema design, query optimization, and data ingestion best practices
 
 ## Related Documentation
 
-- [ClickHouse Cloud](https://clickhouse.com/docs/en/cloud)
-- [ClickHouse Cloud API](https://clickhouse.com/docs/en/cloud/manage/api)
+- [ClickHouse](https://clickhouse.com/docs)
+- [chv CLI](https://github.com/sdairs/chv)

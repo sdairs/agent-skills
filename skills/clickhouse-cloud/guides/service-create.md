@@ -9,7 +9,7 @@ Create a new ClickHouse Cloud service with desired configuration for provider, r
 
 ### Prerequisites
 
-- chv CLI installed (see `setup-install`)
+- chv CLI installed (see the `clickhouse-local-development` skill)
 - Cloud API credentials configured (see `setup-auth`)
 
 ### Steps

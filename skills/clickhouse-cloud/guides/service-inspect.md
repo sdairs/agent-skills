@@ -9,7 +9,7 @@ View all services in your organization and get detailed information about a spec
 
 ### Prerequisites
 
-- chv CLI installed (see `setup-install`)
+- chv CLI installed (see the `clickhouse-local-development` skill)
 - Cloud API credentials configured (see `setup-auth`)
 
 ### Steps

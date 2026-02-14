@@ -9,7 +9,7 @@ Restrict network access to a ClickHouse Cloud service by specifying allowed IP C
 
 ### Prerequisites
 
-- chv CLI installed (see `setup-install`)
+- chv CLI installed (see the `clickhouse-local-development` skill)
 - Cloud API credentials configured (see `setup-auth`)
 
 ### Steps

@@ -1,34 +1,29 @@
 # ClickHouse Cloud with chv — Complete Guide
 
-Step-by-step guides for working with ClickHouse Cloud using the chv CLI. 17 guides across 7 sections covering setup, local development, service management, sizing, migration, security, and backups.
+Step-by-step guides for managing ClickHouse Cloud services using the chv CLI. 11 guides across 5 sections covering setup, service management, sizing, security, and backups.
 
 > **Official docs:** [ClickHouse Cloud](https://clickhouse.com/docs/en/cloud)
+>
+> **For local development** (installing chv, running ClickHouse locally, migrating to cloud): See the `clickhouse-local-development` skill.
 
 ---
 
 ## Table of Contents
 
 1. [Setup](#1-setup)
-   - [Install the chv CLI](#install-the-chv-cli)
    - [Configure Cloud API Credentials](#configure-cloud-api-credentials)
-2. [Local Development](#2-local-development)
-   - [Initialize a Local ClickHouse Project](#initialize-a-local-clickhouse-project)
-   - [Run a Local ClickHouse Server](#run-a-local-clickhouse-server)
-   - [Run SQL Queries with chv](#run-sql-queries-with-chv)
-3. [Service Management](#3-service-management)
+2. [Service Management](#2-service-management)
    - [Create a ClickHouse Cloud Service](#create-a-clickhouse-cloud-service)
    - [Start, Stop, and Delete Cloud Services](#start-stop-and-delete-cloud-services)
    - [List and Inspect Cloud Services](#list-and-inspect-cloud-services)
-4. [Sizing & Scaling](#4-sizing--scaling)
+3. [Sizing & Scaling](#3-sizing--scaling)
    - [Configure Replica Count and Memory](#configure-replica-count-and-memory)
    - [Idle Scaling and Timeouts](#idle-scaling-and-timeouts)
    - [Choose Cloud Provider and Region](#choose-cloud-provider-and-region)
-5. [Local to Cloud](#5-local-to-cloud)
-   - [Migrate from Local Development to Cloud](#migrate-from-local-development-to-cloud)
-6. [Security](#6-security)
+4. [Security](#4-security)
    - [Configure IP Access Rules](#configure-ip-access-rules)
    - [Disk Encryption Options](#disk-encryption-options)
-7. [Backups](#7-backups)
+5. [Backups](#5-backups)
    - [List and Inspect Backups](#list-and-inspect-backups)
    - [Restore a Service from Backup](#restore-a-service-from-backup)
 
@@ -36,97 +31,25 @@ Step-by-step guides for working with ClickHouse Cloud using the chv CLI. 17 guid
 
 ## 1. Setup
 
-### Install the chv CLI
-
-Install chv, a fast ClickHouse version manager and cloud CLI. chv manages local ClickHouse versions and provides commands for interacting with ClickHouse Cloud.
-
-**Prerequisites:** macOS (aarch64, x86_64) or Linux (aarch64, x86_64)
-
-**Steps:**
-
-1. **Install chv using the quick install script**
-
-```bash
-curl -fsSL https://raw.githubusercontent.com/sdairs/chv/main/install.sh | sh
-```
-
-This detects your OS and architecture, downloads the latest binary to `~/.local/bin/chv`, and makes it executable.
-
-2. **Verify the installation**
-
-```bash
-chv --help
-```
-
-3. **Install a ClickHouse version**
-
-```bash
-# Install the latest stable release
-chv install stable
-
-# Or install the latest LTS release
-chv install lts
-
-# Or install a specific version
-chv install 25.12
-```
-
-4. **Set the default version**
-
-```bash
-chv use stable
-```
-
-5. **Verify the active version**
-
-```bash
-chv which
-```
-
-**Version management commands:**
-
-| Command | Description |
-|---------|-------------|
-| `chv install stable` | Install latest stable release |
-| `chv install lts` | Install latest LTS release |
-| `chv install 25.12` | Install latest 25.12.x.x |
-| `chv install 25.12.5.44` | Install exact version |
-| `chv list` | List installed versions |
-| `chv list --available` | List versions available for download |
-| `chv use <version>` | Set default version (installs if needed) |
-| `chv which` | Show current default version |
-| `chv remove <version>` | Remove an installed version |
-
-Versions are stored in `~/.clickhouse/versions/`.
-
----
-
 ### Configure Cloud API Credentials
 
 Set up authentication for ClickHouse Cloud API commands. Required before using any `chv cloud` command.
 
-**Prerequisites:** chv CLI installed, a ClickHouse Cloud account with an API key.
+**Prerequisites:** chv CLI installed (see the `clickhouse-local-development` skill), a ClickHouse Cloud account with an API key.
 
 **Steps:**
 
 1. **Create an API key** in the ClickHouse Cloud console under your organization settings.
 
-2. **Set credentials as environment variables**
+2. **Ask the user to run `chv cloud auth` in a separate terminal** (interactive — the agent cannot run this directly).
 
 ```bash
-export CLICKHOUSE_CLOUD_API_KEY=your-key
-export CLICKHOUSE_CLOUD_API_SECRET=your-secret
+chv cloud auth
 ```
 
-3. **Persist credentials in your shell profile**
+This stores credentials in a file at `.clickhouse/`. Once done, all `chv cloud` commands authenticate automatically.
 
-```bash
-echo 'export CLICKHOUSE_CLOUD_API_KEY=your-key' >> ~/.zshrc
-echo 'export CLICKHOUSE_CLOUD_API_SECRET=your-secret' >> ~/.zshrc
-source ~/.zshrc
-```
-
-4. **Verify access**
+3. **Verify access**
 
 ```bash
 chv cloud org list
@@ -142,127 +65,7 @@ Reference: [ClickHouse Cloud API Keys](https://clickhouse.com/docs/en/cloud/mana
 
 ---
 
-## 2. Local Development
-
-### Initialize a Local ClickHouse Project
-
-Create a project-local ClickHouse data directory for isolated development.
-
-**Prerequisites:** chv CLI installed with at least one ClickHouse version.
-
-**Steps:**
-
-1. **Initialize the local data directory**
-
-```bash
-chv init
-```
-
-This creates a `.clickhouse/` directory with a `.gitignore` so it won't be committed.
-
-> **Note:** `chv run server` automatically runs `init` if needed, so you can skip this step.
-
-**Directory structure:**
-
-```
-.clickhouse/
-├── .gitignore
-├── 25.12.5.44/
-│   ├── data/
-│   └── ...
-└── 26.1.2.11/
-    ├── data/
-    └── ...
-```
-
-Each ClickHouse version gets its own subdirectory, so switching versions with `chv use` won't cause compatibility issues.
-
----
-
-### Run a Local ClickHouse Server
-
-Start a ClickHouse server using the project-local data directory.
-
-**Prerequisites:** chv CLI installed with at least one ClickHouse version.
-
-**Steps:**
-
-1. **Start the server**
-
-```bash
-chv run server
-```
-
-This auto-initializes `.clickhouse/` if needed and starts a ClickHouse server bound to the project-local data directory.
-
-2. **Start the server with a custom config**
-
-```bash
-chv run server -- --config-file=/path/to/config.xml
-```
-
-3. **Connect to the running server**
-
-```bash
-chv run client
-```
-
-4. **Connect with custom options**
-
-```bash
-chv run client -- --host localhost --query "SHOW DATABASES"
-```
-
-**Commands:**
-
-| Command | Description |
-|---------|-------------|
-| `chv run server` | Start server with project-local data |
-| `chv run server -- <args>` | Pass additional arguments to clickhouse-server |
-| `chv run client` | Connect to the local server |
-| `chv run client -- <args>` | Pass additional arguments to clickhouse-client |
-
----
-
-### Run SQL Queries with chv
-
-Execute SQL queries using `chv run` without starting a persistent server.
-
-**Prerequisites:** chv CLI installed with at least one ClickHouse version.
-
-**Steps:**
-
-1. **Run a quick SQL query**
-
-```bash
-chv run --sql "SELECT 1"
-chv run -s "SELECT * FROM system.functions LIMIT 5"
-```
-
-2. **Run clickhouse local with full options**
-
-```bash
-chv run local --query "SELECT 1"
-```
-
-3. **Get help for clickhouse local options**
-
-```bash
-chv run local -- --help
-```
-
-**Commands:**
-
-| Command | Description |
-|---------|-------------|
-| `chv run --sql "..."` | Quick SQL query using clickhouse local |
-| `chv run -s "..."` | Short form of `--sql` |
-| `chv run local --query "..."` | Run clickhouse local with full options |
-| `chv run local -- <args>` | Pass additional arguments to clickhouse local |
-
----
-
-## 3. Service Management
+## 2. Service Management
 
 ### Create a ClickHouse Cloud Service
 
@@ -410,7 +213,7 @@ chv cloud org get <org-id>
 
 ---
 
-## 4. Sizing & Scaling
+## 3. Sizing & Scaling
 
 ### Configure Replica Count and Memory
 
@@ -511,73 +314,7 @@ chv cloud service create --name my-service --provider azure --region eastus2
 
 ---
 
-## 5. Local to Cloud
-
-### Migrate from Local Development to Cloud
-
-Move your schema and data from a local ClickHouse development environment to a ClickHouse Cloud service.
-
-**Prerequisites:** A local ClickHouse project with data and a Cloud service created.
-
-**Steps:**
-
-1. **Start your local server**
-
-```bash
-chv run server &
-```
-
-2. **Export schema**
-
-```bash
-chv run client -- --query "SHOW CREATE TABLE my_table" > schema.sql
-```
-
-3. **Export data**
-
-```bash
-chv run client -- --query "SELECT * FROM my_table FORMAT CSVWithNames" > data.csv
-```
-
-4. **Get cloud service connection details**
-
-```bash
-chv cloud --json service get <service-id>
-```
-
-5. **Apply schema to cloud**
-
-```bash
-chv run client -- \
-  --host <cloud-hostname> \
-  --port 9440 \
-  --secure \
-  --user default \
-  --password <password> \
-  --query "$(cat schema.sql)"
-```
-
-6. **Load data into cloud**
-
-```bash
-chv run client -- \
-  --host <cloud-hostname> \
-  --port 9440 \
-  --secure \
-  --user default \
-  --password <password> \
-  --query "INSERT INTO my_table FORMAT CSVWithNames" < data.csv
-```
-
-**Tips:**
-
-- For large datasets, use Native format for better performance
-- Export and import one table at a time
-- Verify row counts after migration
-
----
-
-## 6. Security
+## 4. Security
 
 ### Configure IP Access Rules
 
@@ -646,7 +383,7 @@ chv cloud service create --name my-service \
 
 ---
 
-## 7. Backups
+## 5. Backups
 
 ### List and Inspect Backups
 

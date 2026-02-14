@@ -9,7 +9,7 @@ Create a new ClickHouse Cloud service by restoring from an existing backup. This
 
 ### Prerequisites
 
-- chv CLI installed (see `setup-install`)
+- chv CLI installed (see the `clickhouse-local-development` skill)
 - Cloud API credentials configured (see `setup-auth`)
 - A backup ID (see `backup-manage`)
 
