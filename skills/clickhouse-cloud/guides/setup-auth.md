@@ -9,7 +9,7 @@ Set up authentication for ClickHouse Cloud API commands. Required before using a
 
 ### Prerequisites
 
-- chv CLI installed (see `setup-install`)
+- chv CLI installed (see the `clickhouse-local-development` skill)
 - A ClickHouse Cloud account
 - An API key and secret from the ClickHouse Cloud console
 

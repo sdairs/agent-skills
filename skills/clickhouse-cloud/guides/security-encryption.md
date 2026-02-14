@@ -9,7 +9,7 @@ Configure customer-managed encryption keys or Transparent Data Encryption (TDE) 
 
 ### Prerequisites
 
-- chv CLI installed (see `setup-install`)
+- chv CLI installed (see the `clickhouse-local-development` skill)
 - Cloud API credentials configured (see `setup-auth`)
 - For customer-managed keys: an encryption key and IAM role in your cloud provider
 

@@ -11,7 +11,7 @@ metadata:
 
 Comprehensive guidance for ClickHouse covering schema design, query optimization, and data ingestion. Contains 28 rules across 3 main categories (schema, query, insert), prioritized by impact.
 
-If you are trying to install and use ClickHouse locally, or deploy with ClickHouse Cloud, you should use the `clickhouse-cloud` skill.
+If you are trying to install and use ClickHouse locally, see the `clickhouse-local-development` skill. For deploying with ClickHouse Cloud, see the `clickhouse-cloud` skill.
 
 > **Official docs:** [ClickHouse Best Practices](https://clickhouse.com/docs/best-practices)
 

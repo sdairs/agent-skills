@@ -1,21 +1,23 @@
 ---
 name: clickhouse-cloud
-description: MUST USE when working with ClickHouse Cloud services, the chv CLI, or local ClickHouse development. Contains 17 guides covering setup, local development, service management, sizing, migration, security, and backups. Always read relevant guide files and cite them in responses.
+description: MUST USE when working with ClickHouse Cloud services, API credentials, service management, sizing, security, or backups. Contains 11 guides covering cloud setup, service lifecycle, scaling, security, and backup operations. Always read relevant guide files and cite them in responses.
 license: Apache-2.0
 metadata:
   author: ClickHouse Inc
-  version: "0.1.0"
+  version: "0.2.0"
 ---
 
 # ClickHouse Cloud with chv
 
-Step-by-step guides for working with ClickHouse Cloud using the chv CLI. Covers local development workflows, Cloud service creation and management, sizing and scaling, migrating local to cloud, security configuration, and backup management.
+Step-by-step guides for managing ClickHouse Cloud services using the chv CLI. Covers Cloud API credentials, service creation and lifecycle management, sizing and scaling, security configuration, and backup management.
 
 > **Official docs:** [ClickHouse Cloud](https://clickhouse.com/docs/en/cloud)
+>
+> **For local development** (installing chv, running ClickHouse locally, migrating to cloud): See the `clickhouse-local-development` skill.
 
 ## IMPORTANT: How to Apply This Skill
 
-**Before answering ClickHouse Cloud or chv questions, follow this priority order:**
+**Before answering ClickHouse Cloud questions, follow this priority order:**
 
 1. **Check for applicable guides** in the `guides/` directory
 2. **If a guide exists:** Follow it and cite it in your response using "Per `guide-name`..."
@@ -28,15 +30,6 @@ Step-by-step guides for working with ClickHouse Cloud using the chv CLI. Covers 
 ---
 
 ## Workflow Procedures
-
-### For Local Development Setup
-
-**Read these guide files in order:**
-
-1. `guides/setup-install.md` — Install chv and a ClickHouse version
-2. `guides/local-init.md` — Initialize a project-local data directory
-3. `guides/local-run-server.md` — Start a local ClickHouse server
-4. `guides/local-run-queries.md` — Run SQL queries with chv
 
 ### For Creating a Cloud Service
 
@@ -57,13 +50,6 @@ Step-by-step guides for working with ClickHouse Cloud using the chv CLI. Covers 
 - `guides/service-inspect.md` — List and inspect services
 - `guides/service-manage.md` — Start, stop, or delete services
 
-### For Migrating Local to Cloud
-
-**Read these guide files in order:**
-
-1. `guides/service-create.md` — Create the cloud service
-2. `guides/migrate-local-to-cloud.md` — Export and import data
-
 ### For Backup and Restore
 
 **Read these guide files in order:**
@@ -71,19 +57,21 @@ Step-by-step guides for working with ClickHouse Cloud using the chv CLI. Covers 
 1. `guides/backup-manage.md` — List and inspect backups
 2. `guides/backup-restore.md` — Restore from a backup
 
+### For Local Development or Migration
+
+See the `clickhouse-local-development` skill for installing chv, running ClickHouse locally, and migrating data to cloud.
+
 ---
 
 ## Guide Categories
 
 | # | Section | Prefix | Guides | Description |
 |---|---------|--------|--------|-------------|
-| 1 | Setup | `setup-` | 2 | Install chv, configure API credentials |
-| 2 | Local Development | `local-` | 3 | Init projects, run server, run queries |
-| 3 | Service Management | `service-` | 3 | Create, manage lifecycle, inspect services |
-| 4 | Sizing & Scaling | `sizing-` | 3 | Replicas, idle scaling, provider/region |
-| 5 | Local to Cloud | `migrate-` | 1 | Migrate data from local dev to cloud |
-| 6 | Security | `security-` | 2 | IP allowlists, encryption |
-| 7 | Backups | `backup-` | 2 | List backups, restore from backup |
+| 1 | Setup | `setup-` | 1 | Configure Cloud API credentials |
+| 2 | Service Management | `service-` | 3 | Create, manage lifecycle, inspect services |
+| 3 | Sizing & Scaling | `sizing-` | 3 | Replicas, idle scaling, provider/region |
+| 4 | Security | `security-` | 2 | IP allowlists, encryption |
+| 5 | Backups | `backup-` | 2 | List backups, restore from backup |
 
 ---
 
@@ -91,14 +79,7 @@ Step-by-step guides for working with ClickHouse Cloud using the chv CLI. Covers 
 
 ### Setup
 
-- `setup-install` — Install chv CLI and manage ClickHouse versions
 - `setup-auth` — Configure ClickHouse Cloud API credentials
-
-### Local Development
-
-- `local-init` — Initialize project-local ClickHouse data directory
-- `local-run-server` — Run a local ClickHouse server
-- `local-run-queries` — Run SQL queries with `chv run`
 
 ### Service Management
 
@@ -111,10 +92,6 @@ Step-by-step guides for working with ClickHouse Cloud using the chv CLI. Covers 
 - `sizing-replicas` — Configure replica count and memory
 - `sizing-idle` — Idle scaling and timeout configuration
 - `sizing-provider-region` — Choose cloud provider and region
-
-### Local to Cloud
-
-- `migrate-local-to-cloud` — Export local data and import to cloud
 
 ### Security
 
@@ -132,15 +109,21 @@ Step-by-step guides for working with ClickHouse Cloud using the chv CLI. Covers 
 
 This skill activates when you encounter:
 
-- Installing or using `chv` CLI
-- Setting up a local ClickHouse development environment
+- Configuring ClickHouse Cloud API credentials
 - Creating ClickHouse Cloud services
 - Choosing cloud provider, region, or sizing
 - Starting, stopping, or deleting Cloud services
-- Migrating from local ClickHouse to Cloud
+- Listing or inspecting Cloud services
 - Configuring IP allowlists or encryption
 - Managing or restoring from backups
-- Questions about `chv run`, `chv cloud`, or `chv install`
+- Questions about `chv cloud` commands
+
+---
+
+## Related Skills
+
+- **`clickhouse-local-development`** — For installing chv, local ClickHouse development, and migrating to cloud
+- **`clickhouse-best-practices`** — For ClickHouse schema design, query optimization, and data ingestion best practices
 
 ---
 

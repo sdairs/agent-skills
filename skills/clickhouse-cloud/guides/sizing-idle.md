@@ -9,7 +9,7 @@ Configure whether a ClickHouse Cloud service can scale to zero when idle and how
 
 ### Prerequisites
 
-- chv CLI installed (see `setup-install`)
+- chv CLI installed (see the `clickhouse-local-development` skill)
 - Cloud API credentials configured (see `setup-auth`)
 
 ### Steps

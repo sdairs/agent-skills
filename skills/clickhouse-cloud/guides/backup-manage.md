@@ -9,7 +9,7 @@ View available backups for a ClickHouse Cloud service and get details about a sp
 
 ### Prerequisites
 
-- chv CLI installed (see `setup-install`)
+- chv CLI installed (see the `clickhouse-local-development` skill)
 - Cloud API credentials configured (see `setup-auth`)
 - An existing Cloud service (see `service-create`)
 

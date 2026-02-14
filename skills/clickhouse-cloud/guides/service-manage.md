@@ -9,7 +9,7 @@ Manage the lifecycle of ClickHouse Cloud services — start stopped services, st
 
 ### Prerequisites
 
-- chv CLI installed (see `setup-install`)
+- chv CLI installed (see the `clickhouse-local-development` skill)
 - Cloud API credentials configured (see `setup-auth`)
 - At least one existing service (see `service-create`)
 
